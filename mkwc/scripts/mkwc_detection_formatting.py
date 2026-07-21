@@ -11,11 +11,11 @@ detection_template = Path(r"C:\Users\tpeterschmidt\OneDrive - PSMFC\Documents\KB
 
 # CHANGE
 # Path to where the final product will be located. Adjust file path to wherever you would like the final output to be located.
-output_path = Path(r"C:\Users\tpeterschmidt\OneDrive - PSMFC\Documents\KBFC\kbfc-db-data-formatting\mkwc\formatted_data")
+output_path = Path(r"C:\Users\tpeterschmidt\OneDrive - PSMFC\Documents\KBFC\KBFC_DB_data\MKWC\formatted_data")
 
 # CHANGE 
 # The file path to the source data file. Adjust this file path according to your file structure.
-source_file = Path(r"C:\Users\tpeterschmidt\OneDrive - PSMFC\Documents\KBFC\kbfc-db-data-formatting\mkwc\source_data\antenna2-7-2-2026.xlsx")
+source_file = Path(r"C:\Users\tpeterschmidt\OneDrive - PSMFC\Documents\KBFC\KBFC_DB_data\MKWC\source_data\antenna2-7-2-2026.xlsx")
 
 # Dataframe that will contain the formatted data.
 detection_df = pd.read_excel(detection_template, sheet_name='Detection')
