@@ -27,7 +27,14 @@ source_file = Path(r"C:\Your\Path\To\Source\Data\detection_data.xlsx")
 # Dataframe that will contain the formatted data.
 detection_df = pd.read_excel(detection_template, sheet_name='Detection')
 
+# ==========================================================================================
+# IMPORTANT: Make sure the sheet_name matches the sheet name for the source data file.
+# ==========================================================================================
+
 source_df = pd.read_excel(source_file, sheet_name='Downloaded Tag IDs')
+
+# ==========================================================================================
+# ==========================================================================================
 
 # Save the output files with today's date in file name
 mask = '%Y%m%d'
