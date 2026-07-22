@@ -1,21 +1,28 @@
 import pandas as pd
 from datetime import datetime as dt
-import os
 from pathlib import Path
 
 # READ ME: The purpose of this script is to format remote detection data into an upload-ready excel sheet. 
 
-#CHANGE
-# Path to KBFC Detection template. Adjust this file path according to your file structure. 
-detection_template = Path(r"C:\Users\tpeterschmidt\OneDrive - PSMFC\Documents\KBFC\kbfc-db-data-formatting\mkwc\templates\KBFC_Detection.xlsm")
+# ==========================================================================================
+# IMPORTANT: For this script to work properly, you will need to change 
+# the file paths in this section to match your file structure. 
+# ==========================================================================================
 
-# CHANGE
-# Path to where the final product will be located. Adjust file path to wherever you would like the final output to be located.
-output_path = Path(r"C:\Users\tpeterschmidt\OneDrive - PSMFC\Documents\KBFC\KBFC_DB_data\MKWC\formatted_data")
+# Your file path to KBFC Detection template. 
+# Adjust this file path according to your file structure. 
+detection_template = Path(r"C:\Your\File\Path\To\The\Template\mkwc\templates\KBFC_Detection.xlsm")
 
-# CHANGE 
-# The file path to the source data file. Adjust this file path according to your file structure.
-source_file = Path(r"C:\Users\tpeterschmidt\OneDrive - PSMFC\Documents\KBFC\KBFC_DB_data\MKWC\source_data\antenna2-7-2-2026.xlsx")
+# Path to where the final product will be located. 
+# Adjust file path to the folder that you would like the output saved to.
+output_path = Path(r"C:\Your\Path\To\Output\Folder")
+ 
+# The file path to the source data file. 
+# Adjust this file path according to your file structure.
+source_file = Path(r"C:\Your\Path\To\Source\Data\detection_data.xlsx")
+
+# ==========================================================================================
+# ==========================================================================================
 
 # Dataframe that will contain the formatted data.
 detection_df = pd.read_excel(detection_template, sheet_name='Detection')
@@ -28,7 +35,6 @@ dte = dt.now().strftime(mask)
 
 # Set Date Time format
 datetime_format = 'YYYY-MM-DD HH:MM:SS'
-
 
 # Formatting the date and time columns in the source data to match the required detection file format.
 source_df['Scan Date'] = pd.to_datetime(source_df['Scan Date']).dt.strftime("%Y-%m-%d")
@@ -44,27 +50,78 @@ detection_df['PITtag'] = source_df['HEX Tag ID']
 
 print("PIT tags added successfully.")
 
-# Adding the correct remote deployment and Site ID to to the detection dataframe.
+# ============================================================================================
+# IMPORTANT: This section will need to be adjusted according to 
+# the specific remote deployment associated with the data.
+# ============================================================================================
+
+# Map each Reader ID from the source data to the appropriate remote deployment ImportID.
+#
+# Format:
+#     "ReaderID": "ImportID"
+#
+# The value on the left must match a value found in the 'Reader ID' column
+# of the source data file.
+# The value on the right must be the corresponding remote deployment ImportID
+# that should be written to the output file.
+#
+# In the placeholder values below:
+#   If Reader ID = "01", ImportID1 will be written to the output.
+#   If Reader ID = "02", ImportID2 will be written to the output.  
+
 reader_deployment_map = {
-    "01": "ImportID1",
+    "01": "ImportID1",  
     "02": "ImportID2",
 }
+
+# ============================================================================================
+# ============================================================================================
 
 detection_df['ImportID'] = source_df['Reader ID'].map(reader_deployment_map)
 
 print("ImportID assignment successful.")
 
-# Adding the correct Site ID to the detection dataframe.
+# ============================================================================================
+# IMPORTANT: This section will need to be adjusted according to 
+# the specific site associated with the data.
+# ============================================================================================
+
+# Map each ImportID to the appropriate SiteID.
+#
+# Format:
+#     "ImportID": "SiteID"
+#
+# The value on the left must match a value found in the 'ImportID' column
+# of the source data file.
+# The value on the right must be the corresponding site ID
+# that should be written to the output file.
+#
+# In the placeholder values below:
+#   If ImportID = "ImportID1", SiteID1 will be written to the output.
+#   If ImportID = "ImportID2", SiteID2 will be written to the output. 
+
 importid_siteid_map = {
     "ImportID1": "SiteID1",
     "ImportID2": "SiteID2",
 }
 
+# ============================================================================================
+# ============================================================================================
+
 detection_df['SiteID'] = detection_df['ImportID'].map(importid_siteid_map)
 
 print("SiteID assignment successful.")
 
+# ===========================================================================================
+# IMPORTANT: Update this value to match the Antenna ID associated with the data.
+# ===========================================================================================
+
+# The same value will be assigned to every row in the output file. 
+
 detection_df['AntennaID'] = 2
+
+# ===========================================================================================
+# ===========================================================================================
 
 print("AntennaID assignment successful.")
 
