@@ -11,15 +11,19 @@ from pathlib import Path
 
 # Your file path to KBFC Detection template. 
 # Adjust this file path according to your file structure. 
-detection_template = Path(r"C:\Your\File\Path\To\The\Template\mkwc\templates\KBFC_Detection.xlsm")
+# detection_template = Path(r"C:\Your\File\Path\To\The\Template\mkwc\templates\KBFC_Detection.xlsm")
+
+detection_template = Path(r"C:\Users\tpeterschmidt\OneDrive - PSMFC\Documents\KBFC\kbfc-db-data-formatting\mkwc\templates\KBFC_Detection.xlsm")
 
 # Path to where the final product will be located. 
 # Adjust file path to the folder that you would like the output saved to.
-output_path = Path(r"C:\Your\Path\To\Output\Folder")
+# output_path = Path(r"C:\Your\Path\To\Output\Folder")
+
+output_path = Path(r"C:\Users\tpeterschmidt\OneDrive - PSMFC\Documents\KBFC\KBFC_DB_data\MKWC\formatted_data")
  
 # The file path to the source data file. 
 # Adjust this file path according to your file structure.
-source_file = Path(r"C:\Your\Path\To\Source\Data\detection_data.xlsx")
+source_file = Path(r"C:\Users\tpeterschmidt\OneDrive - PSMFC\Documents\KBFC\KBFC_DB_data\MKWC\source_data\antenna2-7-2-2026.xlsx")
 
 # ==========================================================================================
 # ==========================================================================================
@@ -73,12 +77,14 @@ print("PIT tags added successfully.")
 # that should be written to the output file.
 #
 # In the placeholder values below:
-#   If Reader ID = "01", ImportID1 will be written to the output.
-#   If Reader ID = "02", ImportID2 will be written to the output.  
+#   If Reader ID = 1, ImportID1 will be written to the output.
+#   If Reader ID = 2, ImportID2 will be written to the output.
+# 
+# If there is a leading 0 in the Reader ID values, don't add it when setting up the below reader_deployment_map.  
 
 reader_deployment_map = {
-    "01": "ImportID1",  
-    "02": "ImportID2",
+    1: "ImportID1",  
+    2: "ImportID2",
 }
 
 # ============================================================================================
@@ -104,8 +110,8 @@ print("ImportID assignment successful.")
 # that should be written to the output file.
 #
 # In the placeholder values below:
-#   If ImportID = "ImportID1", SiteID1 will be written to the output.
-#   If ImportID = "ImportID2", SiteID2 will be written to the output. 
+#   If ImportID = "ImportID1", "SiteID1" will be written to the output.
+#   If ImportID = "ImportID2", "SiteID2" will be written to the output. 
 
 importid_siteid_map = {
     "ImportID1": "SiteID1",
@@ -123,7 +129,7 @@ print("SiteID assignment successful.")
 # IMPORTANT: Update this value to match the Antenna ID associated with the data.
 # ===========================================================================================
 
-# The same value will be assigned to every row in the output file. 
+# The same value will be assigned to every row in the AntennaID column of the output file. 
 
 detection_df['AntennaID'] = 2
 

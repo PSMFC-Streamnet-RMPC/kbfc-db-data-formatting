@@ -44,3 +44,7 @@ The output is saved to the directory specified in the script.
 ## Notes
 
 The current workflow includes hard-coded mappings for reader deployment IDs, site IDs, and antenna ID values. These may need to be adjusted for different deployments or source files.
+
+Use the KBFC database to retrieve the appropriate ImportIDs and SiteIDs. 
+
+This script does not populate the FileDate or ReaderID columns in the output file, as those are not required to upload the detection data to the KBFC database. 
