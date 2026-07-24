@@ -16,7 +16,11 @@ The script in [mkwc/scripts/mkwc_detection_formatting.py](mkwc/scripts/mkwc_dete
 
 - Python 3.x
 - pandas
-- openpyxl
+
+To download the pandas package, run:
+```bash
+pip install pandas
+```
 
 ## Setup
 

@@ -11,19 +11,15 @@ from pathlib import Path
 
 # Your file path to KBFC Detection template. 
 # Adjust this file path according to your file structure. 
-# detection_template = Path(r"C:\Your\File\Path\To\The\Template\mkwc\templates\KBFC_Detection.xlsm")
-
-detection_template = Path(r"C:\Users\tpeterschmidt\OneDrive - PSMFC\Documents\KBFC\kbfc-db-data-formatting\mkwc\templates\KBFC_Detection.xlsm")
+detection_template = Path(r"C:\Your\File\Path\To\The\Template\mkwc\templates\KBFC_Detection.xlsm")
 
 # Path to where the final product will be located. 
 # Adjust file path to the folder that you would like the output saved to.
-# output_path = Path(r"C:\Your\Path\To\Output\Folder")
-
-output_path = Path(r"C:\Users\tpeterschmidt\OneDrive - PSMFC\Documents\KBFC\KBFC_DB_data\MKWC\formatted_data")
+output_path = Path(r"C:\Your\Path\To\Output\Folder")
  
 # The file path to the source data file. 
 # Adjust this file path according to your file structure.
-source_file = Path(r"C:\Users\tpeterschmidt\OneDrive - PSMFC\Documents\KBFC\KBFC_DB_data\MKWC\source_data\antenna2-7-2-2026.xlsx")
+source_file = Path(r"C:\Path\To\source_file.xlsx")
 
 # ==========================================================================================
 # ==========================================================================================
@@ -95,46 +91,17 @@ detection_df['ImportID'] = source_df['Reader ID'].map(reader_deployment_map)
 print("ImportID assignment successful.")
 
 # ============================================================================================
-# IMPORTANT: This section will need to be adjusted according to 
-# the specific site associated with the data.
+# IMPORTANT: This section will need to be adjusted according to the specific site associated with the data.
 # ============================================================================================
 
-# Map each ImportID to the appropriate SiteID.
-#
-# Format:
-#     "ImportID": "SiteID"
-#
-# The value on the left must match a value found in the 'ImportID' column
-# of the source data file.
-# The value on the right must be the corresponding site ID
-# that should be written to the output file.
-#
-# In the placeholder values below:
-#   If ImportID = "ImportID1", "SiteID1" will be written to the output.
-#   If ImportID = "ImportID2", "SiteID2" will be written to the output. 
-
-importid_siteid_map = {
-    "ImportID1": "SiteID1",
-    "ImportID2": "SiteID2",
-}
+detection_df['SiteID'] = '1000R'
 
 # ============================================================================================
 # ============================================================================================
-
-detection_df['SiteID'] = detection_df['ImportID'].map(importid_siteid_map)
 
 print("SiteID assignment successful.")
 
-# ===========================================================================================
-# IMPORTANT: Update this value to match the Antenna ID associated with the data.
-# ===========================================================================================
-
-# The same value will be assigned to every row in the AntennaID column of the output file. 
-
-detection_df['AntennaID'] = 2
-
-# ===========================================================================================
-# ===========================================================================================
+detection_df['AntennaID'] = 1
 
 print("AntennaID assignment successful.")
 
