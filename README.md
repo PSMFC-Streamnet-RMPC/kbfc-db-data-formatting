@@ -47,6 +47,8 @@ The output is saved to the directory specified in the script.
 
 ## Notes
 
+You will need to change the folder and file paths in the script to match your specific file structure. 
+
 The current workflow includes hard-coded mappings for reader deployment IDs, site IDs, and antenna ID values. These may need to be adjusted for different deployments or source files.
 
 Use the KBFC database to retrieve the appropriate ImportIDs and SiteIDs. 

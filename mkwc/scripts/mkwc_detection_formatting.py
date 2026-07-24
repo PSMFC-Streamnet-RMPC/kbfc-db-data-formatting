@@ -2,11 +2,11 @@ import pandas as pd
 from datetime import datetime as dt
 from pathlib import Path
 
-# READ ME: The purpose of this script is to format remote detection data into an upload-ready excel sheet. 
+# READ ME: The purpose of this script is to format remote detection data into an upload-ready excel sheet.
 
 # ==========================================================================================
-# IMPORTANT: For this script to work properly, you will need to change 
-# the file paths in this section to match your file structure. 
+# IMPORTANT: For this script to work properly, you will need to change
+# the file paths in this section to match your file structure.
 # ==========================================================================================
 
 # Your file path to KBFC Detection template. 
