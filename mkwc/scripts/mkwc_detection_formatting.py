@@ -11,15 +11,17 @@ from pathlib import Path
 
 # Your file path to KBFC Detection template. 
 # Adjust this file path according to your file structure. 
-detection_template = Path(r"C:\Your\File\Path\To\The\Template\mkwc\templates\KBFC_Detection.xlsm")
+# detection_template = Path(r"C:\Your\File\Path\To\The\Template\mkwc\templates\KBFC_Detection.xlsm")
+
+detection_template = Path(r"C:\Users\tpeterschmidt\OneDrive - PSMFC\Documents\KBFC\kbfc-db-data-formatting\mkwc\templates\KBFC_Detection.xlsm")
 
 # Path to where the final product will be located. 
 # Adjust file path to the folder that you would like the output saved to.
-output_path = Path(r"C:\Your\Path\To\Output\Folder")
+output_path = Path(r"C:\Users\tpeterschmidt\OneDrive - PSMFC\Documents\KBFC\KBFC_DB_data\MKWC\formatted_data")
  
 # The file path to the source data file. 
 # Adjust this file path according to your file structure.
-source_file = Path(r"C:\Path\To\source_file.xlsx")
+source_file = Path(r"C:\Users\tpeterschmidt\OneDrive - PSMFC\Documents\KBFC\KBFC_DB_data\MKWC\source_data\antenna2-7-2-2026.xlsx")
 
 # ==========================================================================================
 # ==========================================================================================
@@ -60,35 +62,13 @@ print("PIT tags added successfully.")
 # ============================================================================================
 # IMPORTANT: This section will need to be adjusted according to 
 # the specific remote deployment associated with the data.
-# ============================================================================================
+# ============================================================================================ 
 
-# Map each Reader ID from the source data to the appropriate remote deployment ImportID.
-#
-# Format:
-#     "ReaderID": "ImportID"
-#
-# The value on the left must match a value found in the 'Reader ID' column
-# of the source data file.
-# The value on the right must be the corresponding remote deployment ImportID
-# that should be written to the output file.
-#
-# In the placeholder values below:
-#   If Reader ID = 1, ImportID1 will be written to the output.
-#   If Reader ID = 2, ImportID2 will be written to the output.
-# 
-# If there is a leading 0 in the Reader ID values, don't add it when setting up the below reader_deployment_map.  
-
-reader_deployment_map = {
-    1: "ImportID1",  
-    2: "ImportID2",
-}
-
-# ============================================================================================
-# ============================================================================================
-
-detection_df['ImportID'] = source_df['Reader ID'].map(reader_deployment_map)
+detection_df['ImportID'] = 'XLRAC'
 
 print("ImportID assignment successful.")
+
+
 
 # ============================================================================================
 # IMPORTANT: This section will need to be adjusted according to the specific site associated with the data.
@@ -96,14 +76,38 @@ print("ImportID assignment successful.")
 
 detection_df['SiteID'] = '1000R'
 
-# ============================================================================================
-# ============================================================================================
-
 print("SiteID assignment successful.")
 
-detection_df['AntennaID'] = 1
+
+
+# ============================================================================================
+# IMPORTANT: This section will need to be adjusted according to 
+# the specific remote deployment associated with the data.
+# ============================================================================================
+
+# Map each Reader ID from the source data to the appropriate AntennaID.
+#
+# Format:
+#     ReaderID: "AntennaID"
+#
+# The value on the left must match a value found in the 'Reader ID' column
+# of the source data file.
+# The value on the right will be the corresponding AntennaID
+# that should be written to the output file.
+# 
+# If there is a leading 0 in the Reader ID values, don't add it when setting up the below antenna_map.  
+
+antenna_map = {
+    1: "001",  
+    2: "002",
+}
+
+detection_df['AntennaID'] = source_df['Reader ID'].map(antenna_map)
 
 print("AntennaID assignment successful.")
+
+# ============================================================================================
+# ============================================================================================
 
 # Export the detection dataframe to an excel file. 
 
