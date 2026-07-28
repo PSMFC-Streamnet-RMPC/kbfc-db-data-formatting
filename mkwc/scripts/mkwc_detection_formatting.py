@@ -11,19 +11,15 @@ from pathlib import Path
 
 # Your file path to KBFC Detection template. 
 # Adjust this file path according to your file structure. 
-# detection_template = Path(r"C:\Your\File\Path\To\The\Deteciton\Template\KBFC_Detection.xlsm")
-
-detection_template = Path(r"C:\Users\tpeterschmidt\OneDrive - PSMFC\Documents\KBFC\kbfc-db-data-formatting\mkwc\templates\KBFC_Detection.xlsm")
+detection_template = Path(r"C:\Your\File\Path\To\The\Deteciton\Template\KBFC_Detection.xlsm")
 
 # Path to where the final product will be located. 
 # Adjust file path to the folder that you would like the output saved to.
-# output_path = Path(r"C:\Your\File\Path\To\Your\Output\Folder")
-output_path = Path(r"C:\Users\tpeterschmidt\OneDrive - PSMFC\Documents\KBFC\KBFC_DB_data\MKWC\formatted_data")
- 
+output_path = Path(r"C:\Your\File\Path\To\Your\Output\Folder")
+
 # The file path to the source data file. 
 # Adjust this file path according to your file structure.
-# source_file = Path(r"C:\Your\File\Path\To\The\source_data.xlsx")
-source_file = Path(r"C:\Users\tpeterschmidt\OneDrive - PSMFC\Documents\KBFC\KBFC_DB_data\MKWC\source_data\antenna2-7-2-2026.xlsx")
+source_file = Path(r"C:\Your\File\Path\To\The\source_data.xlsx")
 
 # ==========================================================================================
 # ==========================================================================================
